@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Countdown</string>
+    <string name="intro">Time remaining till the 10th of November is: </string>
     <string name="action_settings">Settings</string>
 </resources>
