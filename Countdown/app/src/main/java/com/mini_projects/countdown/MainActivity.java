@@ -1,6 +1,7 @@
 package com.mini_projects.countdown;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -8,8 +9,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
+
+    EditText editText1;
+    EditText editText2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +22,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        new CountDownTimer(120000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                editText1.setText("seconds remaining: " + millisUntilFinished / 1000);
+                editText2.setText("minutes remaining: " + millisUntilFinished / 60000);
+        }
+
+            public void onFinish() {
+                editText1.setText("done!");
+                editText2.setText("done!");
+            }
+        }.start();
+
+        editText1 = (EditText) findViewById(R.id.seconds);
+        editText2 = (EditText) findViewById(R.id.minutes);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
